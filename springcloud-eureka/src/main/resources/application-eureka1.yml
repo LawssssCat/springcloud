@@ -1,0 +1,11 @@
+server:
+  port: 2001
+  
+eureka:  instance:    hostname: eureka1
+  client:
+    # 保护模式 开发期间关闭（搭建集群时候需要开启）
+    # 互相注册    register-with-eureka: true # profile的配置会覆盖公用配置
+    # 互相拉取
+    fetch-registry: true # profile的配置会覆盖公用配置
+    service-url: 
+      defaultZone: http://eureka2:2002/eureka  # eureka1启动时向eureka2注册

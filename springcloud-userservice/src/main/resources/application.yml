@@ -1,0 +1,19 @@
+sp:
+  user-service:
+    users: "[{\"id\":7, \"username\":\"abc\",\"password\":\"123\"},{\"id\":8, \"username\":\"def\",\"password\":\"456\"},{\"id\":9, \"username\":\"ghi\",\"password\":\"789\"}]"
+
+spring:
+  application:
+    name: user-service
+
+server:
+  port: 8101
+  
+  
+eureka:
+  client:
+    service-url:
+      # 容灾:指定 eureka 的地点
+      # 单机部署,必须结合公共的云服务器(阿里云/腾讯云/亚马逊云...)
+      # 我们现在只能这么写,写不了别的
+      defaultZone: http://eureka1:2001/eureka
