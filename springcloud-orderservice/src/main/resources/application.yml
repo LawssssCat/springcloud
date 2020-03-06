@@ -12,3 +12,8 @@ eureka:
       # 单机部署,必须结合公共的云服务器(阿里云/腾讯云/亚马逊云...)
       # 我们现在只能这么写,写不了别的
       defaultZone: http://eureka1:2001/eureka
+      
+      
+feign:  hystrix:    enabled: true
+
+management:  endpoints:    web:      exposure:        include:        - "*"    

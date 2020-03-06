@@ -1,9 +1,17 @@
 package com.spring.sp04.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.sp01.pojo.Item;
 import com.spring.sp01.pojo.Order;
+import com.spring.sp01.pojo.User;
 import com.spring.sp01.service.OrderService;
+import com.spring.sp01.util.JsonResult;
+import com.spring.sp04.service.feign.ItemFeignService;
+import com.spring.sp04.service.feign.UserFeignService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,19 +19,33 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class OrderServiceImpl implements OrderService {
 
+	@Autowired
+	private ItemFeignService itemService;
+	
+	@Autowired
+	private UserFeignService userService ;
+	
 	@Override
 	public Order getOrder(String orderId) {
-		// TODO 调用user-service获取用户信息
-		// TODO 调用item-service获取商品信息
+		// 调用user-service获取用户信息
+		JsonResult<User> user = userService.getUser(7); 
+		// 调用item-service获取商品信息
+		JsonResult<List<Item>> items = itemService.getItems(orderId);
+		
 		Order order = new Order();
 		order.setId(orderId);
+		order.setUser(user.getData());
+		order.setItems(items.getData());
 		return order;
 	}
 
 	@Override
 	public void addOrder(Order order) {
-		// TODO: 调用item-service减少商品库存
-		// TODO: 调用user-service增加用户积分
+		// 调用item-service减少商品库存
+		itemService.decreaseNumber(order.getItems()) ;
+		// 调用user-service增加用户积分
+		userService.addScore(7, 100) ;
+		
 		log.info("保存订单：" + order);
 	}
 
