@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    config:
+      discovery:
+        enabled: true # config server 可发现
+        service-id: config-server # config server id
+      name: item-service # 哪个配置
+      profile: dev # 哪个profile
+      
+eureka:  client:    service-url:      defaultZone: http://eureka1:2001/eureka, http://eureka2:2002/eureka
