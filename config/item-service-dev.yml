@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: item-service
+  cloud:
+     config:
+      override-none: true
+    
+    
+server:
+  # 服务1  port: 8001 
+  # 服务2(在启动命令参数中覆盖8001)
+  # port: 8002
+eureka:  client:    service-url:
+      # 容灾:指定 eureka 的地点
+      # 单机部署,必须结合公共的云服务器(阿里云/腾讯云/亚马逊云...)
+      # 我们现在只能这么写,写不了别的      defaultZone: http://eureka1:2001/eureka, http://eureka2:2002/eureka
+      
