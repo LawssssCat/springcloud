@@ -4,7 +4,12 @@ spring:
   cloud:
      config:
       override-none: true
-    
+  rabbitmq:
+    host: 192.168.64.140
+    # rabbit client 端通信端口
+    port: 5672
+    username: admin
+    password: admin
     
 server:
   # 服务1  port: 8001 
